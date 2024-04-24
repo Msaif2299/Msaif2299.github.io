@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+  <!-- Add your site or application content here -->
+  <div id="tabs">
+    <ul>
+      <li><a href="#acknowledgement">Acknowledgement</a></li>
+      <li><a href="#dataprocessing">Data Processing</a></li>
+      <li><a href="#visualization">Visualization</a></li>
+    </ul>
+    <div id="acknowledgement">
+      <h1><u>Data Sources Used in this Project:</u></h1>
+      <ol>
+        <li><span class="datasource-label">Source for House Prices: </span><a href="https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/housepriceindexmonthlyquarterlytables1to19">https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/housepriceindexmonthlyquarterlytables1to19</a></li>
+        <li><span class="datasource-label">Source for Migration Values: </span><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/migrationwithintheuk/datasets/localareamigrationindicatorsunitedkingdom">https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/migrationwithintheuk/datasets/localareamigrationindicatorsunitedkingdom</a> </li>
+        <li><span class="datasource-label">Source for Number of Residential Sales in the UK: </span><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/housing/datasets/numberofresidentialpropertysalesfornationalandsubnationalgeographiesquarterlyrollingyearhpssadataset06">https://www.ons.gov.uk/peoplepopulationandcommunity/housing/datasets/numberofresidentialpropertysalesfornationalandsubnationalgeographiesquarterlyrollingyearhpssadataset06</a></li>
+        <li><span class="datasource-label">Source for UK GeoJSON: </span><a href="https://data.opendatasoft.com/explore/dataset/georef-united-kingdom-county-unitary-authority%40public/export/?disjunctive.ctry_code&disjunctive.ctry_name&disjunctive.rgn_code&disjunctive.rgn_name&disjunctive.ctyua_code&disjunctive.ctyua_name">https://data.opendatasoft.com/explore/dataset/georef-united-kingdom-county-unitary-authority%40public/export/?disjunctive.ctry_code&disjunctive.ctry_name&disjunctive.rgn_code&disjunctive.rgn_name&disjunctive.ctyua_code&disjunctive.ctyua_name</a></li>
+      </ol>
+      <h1><u>References used in Source Code:</u></h1>
+      <ol>
+        <li><span class="datasource-label">Code source for bar graph: </span><a href="https://d3-graph-gallery.com/graph/barplot_button_data_hard.html">https://d3-graph-gallery.com/graph/barplot_button_data_hard.html</a></li>
+        <li><span class="datasource-label">Loading data from JSON file synchronously: </span><a href="https://stackoverflow.com/questions/9364630/using-jquery-getjson-and-fire-a-function-after-the-results-have-been-processed">https://stackoverflow.com/questions/9364630/using-jquery-getjson-and-fire-a-function-after-the-results-have-been-processed</a></li>
+        <li><span class="datasource-label">Pound formatting: </span><a href="https://stackoverflow.com/questions/23611180/d3-js-nvd3-axislabel-with-a-%C2%A3-pound-symbol">https://stackoverflow.com/questions/23611180/d3-js-nvd3-axislabel-with-a-%C2%A3-pound-symbol</a></li>
+        <li><span class="datasource-label">Axis labeling: </span><a href="https://stackoverflow.com/questions/11189284/d3-axis-labeling">https://stackoverflow.com/questions/11189284/d3-axis-labeling</a></li>
+        <li><span class="datasource-label">Tooltip: </span><a href="https://observablehq.com/@bsaienko/animated-bar-chart-with-tooltip">https://observablehq.com/@bsaienko/animated-bar-chart-with-tooltip</a></li>
+        <li><span class="datasource-label">Parts of Map Code: </span><a href="https://d3-graph-gallery.com/graph/choropleth_hover_effect.html">https://d3-graph-gallery.com/graph/choropleth_hover_effect.html</a></li>
+      </ol>
+    </div>
+    <div id="dataprocessing">
+      <span class="datasource-label">House Prices Dataset</span>:
+      <ol>
+        <li>Common years were chosen between House Prices Dataset and Number of Residential Sales Dataset, 1995-2022.</li>
+        <li>Then only the spreadsheet "Table 11", was chosen, and only the attribute "All Dwellings Price" was kept, rest were discarded.</li>
+        <li>Since the timescales were different, processing was done to bring them onto a common ground.</li>
+        <li>Took the average over the four quarters of the year and used that as entries on a per year basis.</li>
+        <li>Each region was processed and stored in the JSON files.</li>
+      </ol>
+      <span class="datasource-label">Number of Residential Sales in the UK Dataset</span>:
+      <ol>
+        <li>Common years were chosen between House Prices Dataset and Number of Residential Sales Dataset, 1995-2022.</li>
+        <li>Then only the spreadsheet "1a", was chosen.</li>
+        <li>Since the timescales were different, processing was done to bring them onto a common ground.</li>
+        <li>Took the value of the fourth quarter only, because the timescale was on a year-end basis and thus, the fourth quarter would cover the whole year. Thus used those as entries on a per year basis.</li>
+        <li>Each region was processed and stored in the JSON files.</li>
+      </ol>
+      <span class="datasource-label">Combined Dataset</span>:<br>
+      Only the common regions were loaded, and any inconsistencies in the region names were handled accordingly.
+    </div>
+    <div id="visualization">
+      <div id="panelone"><div id="doublebar"></div></div>
+      <div id="paneltwo"><div id="regions"></div></div>
+      <div id="panelthree"><div id="displaymap"></div><b>Map of the UK</b></div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
