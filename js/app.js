@@ -12,7 +12,8 @@ const RED = "#f22c43"
 const WHITE = "#fff";
 const LIGHT_BLUE = "#A9C4EB"
 const LIGHT_GREEN = "#69b3a2"
-const BRIGHT_YELLOW = "#eec42d"
+const ORANGE = "#FFB366"
+const BRIGHT_YELLOW = "#f0e32b"
 
 var hpi_data = new Map();
 var housesales_data = new Map();
@@ -158,7 +159,7 @@ function updateBarGraph() {
     .attr("y", function(d) { return barPlotObjects.y(d[1]); })
     .attr("width", barPlotObjects.x.bandwidth() + 6)
     .attr("height", function(d) { return barPlotObjects.height - barPlotObjects.y(d[1]); })
-    .attr("fill", LIGHT_GREEN)
+    .attr("fill", LIGHT_BLUE)
     .on('mouseover', hoverOverBar)
     .on('mousemove', function () {
       tooltip
@@ -167,7 +168,7 @@ function updateBarGraph() {
     })
     .on('mouseout', function () {
       tooltip.html(``).style('visibility', 'hidden');
-      d3.select(this).transition().attr('fill', LIGHT_GREEN);
+      d3.select(this).transition().attr('fill', LIGHT_BLUE);
     });
 
   u
@@ -193,7 +194,7 @@ function updateBarGraph() {
     .attr("y", function(d) { return barPlotObjects.height; })
     .attr("width", barPlotObjects.x.bandwidth() + 6)
     .attr("height", function(d) { return barPlotObjects.invY(d[1]); })
-    .attr("fill", LIGHT_BLUE)
+    .attr("fill", ORANGE)
     .on('mouseover', hoverOverBar)
     .on('mousemove', function () {
       tooltip
@@ -202,7 +203,7 @@ function updateBarGraph() {
     })
     .on('mouseout', function () {
       tooltip.html(``).style('visibility', 'hidden');
-      d3.select(this).transition().attr('fill', LIGHT_BLUE);
+      d3.select(this).transition().attr('fill', ORANGE);
     });
 
   u
